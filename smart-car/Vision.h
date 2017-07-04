@@ -10,4 +10,3 @@ public:
 	~Vision();
 	Mat bgrGetColor(int, int, int, int);
 };
-
