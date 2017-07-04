@@ -13,12 +13,12 @@ using namespace cv;
 #define COL_MAX 960
 #define MIDLINE_LENGTH ROW_MAX - ROW_MIN
 
-int nowWay;		//当前所在跑道颜色： 
-				//  0：黄色
-				//  1：白色
-				//  2：黑色
 vector<int> midLine;    //中线
-int startLine;    //起点或终点线
+int startLine;			//起点或终点线
+int nowRoad;			//当前所在跑道颜色： 
+						//  0：黄色
+						//  1：白色
+						//  2：黑色
 
 void showVideo();
 
@@ -41,3 +41,27 @@ void showVideo() {
 
 }
 
+
+Mat getColor(Mat& src, int b, int g, int r, int allowence)
+{
+	int error, row, col;
+	Mat dst;
+
+	for (row = 0; row < src.rows; row++) {
+		uchar *srcPtr = src.ptr<uchar>(row);
+		uchar *dstPtr = dst.ptr<uchar>(row);
+		for (col = 0; col < src.cols; col++) {
+			error = abs(srcPtr[col*3] - 0 - b)
+				+ abs(srcPtr[col*3+1] - 0 - g)
+				+ abs(srcPtr[col*3+2] - 0 - r);
+			if (error <= allowence) {
+				dstPtr[col] = 255;
+			}
+			else {
+				dstPtr[col] = 0;
+			}
+		}
+
+		return dst;
+	}
+}
