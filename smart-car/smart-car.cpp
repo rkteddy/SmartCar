@@ -23,7 +23,7 @@ int nowRoad;			//当前所在跑道颜色：
 void showVideo();
 
 int main() {
-	showVideo();
+	//showVideo();
     return 0;
 }
 
