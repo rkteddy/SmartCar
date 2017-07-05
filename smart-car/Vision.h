@@ -8,5 +8,5 @@ public:
 	Mat src;
 	Vision(Mat&);
 	~Vision();
-	Mat bgrGetColor(int, int, int, int);
+	Mat bgrBinarization(int, int, int, int);
 };

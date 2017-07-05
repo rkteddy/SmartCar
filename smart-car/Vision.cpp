@@ -12,7 +12,7 @@ Vision::~Vision()
 }
 
 
-Mat Vision::bgrGetColor(int b, int g, int r, int allowence)
+Mat Vision::bgrBinarization(int b, int g, int r, int allowence)
 {
 	int error, row, col;
 	Mat dst;

@@ -6,7 +6,7 @@
 using namespace std;
 using namespace cv;
 
-#define PI 3.1415926
+#define PI 3.141592653589792
 #define ROW_MIN 600
 #define ROW_MAX 1000
 #define COL_MIN 0
