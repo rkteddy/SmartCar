@@ -1,2 +1,3 @@
 #pragma once
-void Quicksort(int[], int, int);
+void quickSort(int*, int, int);
+void medianFilter(int*, int, int);
