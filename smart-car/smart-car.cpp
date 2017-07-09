@@ -25,6 +25,9 @@ int main() {
     return 0;
 }
 
+/*
+	µ÷ÓÃÉãÏñÍ·
+*/
 void showVideo() {
 
 	VideoCapture capture(1);
