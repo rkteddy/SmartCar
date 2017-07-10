@@ -33,7 +33,7 @@ void quickSort(int *a, int low, int high)
 }
 
 /*
-	半径为n的中值滤波
+	半径为n的向量中值滤波
 */
 void medianFilter(int *a, int size, int n)
 {
@@ -42,11 +42,12 @@ void medianFilter(int *a, int size, int n)
 
 	// 上边缘补偿
 	for (int i = 0; i < k; i++) {
+		int t = 0;
 		for (int j = 0; j < i + k; j++) {
-			tmp[j] = a[j];
+			tmp[t++] = a[j];
 		}
 		for (int j = i + k; j < n; j++) {
-			tmp[j] = a[i];
+			tmp[t++] = a[i];
 		}
 		quickSort(tmp, 0, n);
 		a[i] = tmp[i];
@@ -54,8 +55,9 @@ void medianFilter(int *a, int size, int n)
 
 	// 中间数据
 	for (int i = k; i < size - k; i++) {
-		for (int j = 0; j <= n; j++) {
-			tmp[j] = a[i - k + j];
+		int t = 0;
+		for (int j = i - k; j < i + k; j++) {
+			tmp[t++] = a[j];
 		}
 		quickSort(tmp, 0, n);
 		a[i] = tmp[i];
@@ -63,13 +65,57 @@ void medianFilter(int *a, int size, int n)
 
 	// 下边缘补偿
 	for (int i = size - k; i < size; i++) {
-		for (int j = 0; j < size + k - i; j++) {
-			tmp[j] = a[i - k + j];
+		int t = 0;
+		for (int j = i - k; j < size; j++) {
+			tmp[t++] = a[j];
 		}
-		for (int j = size + k - i; j < n; j++) {
-			tmp[j] = a[i];
+		for (int j = size; j < i + k; j++) {
+			tmp[t++] = a[i];
 		}
 		quickSort(tmp, 0, n);
 		a[i] = tmp[i];
+	}
+}
+
+/*
+    半径为n的向量均值滤波
+*/
+void meanFilter(int *a, int size, int n)
+{
+	int k = n / 2;
+
+	// 上边缘补偿
+	for (int i = 0; i < k; i++) {
+		int sum = 0;
+		int t = 0;
+		for (int j = 0; j < i + k; j++) {
+			sum += a[j];
+		}
+		for (int j = i + k; j < n; j++) {
+			sum += a[i];
+		}
+		a[i] = sum / n;
+	}
+
+	// 中间数据
+	for (int i = k; i < size - k; i++) {
+		int sum = 0;
+		for (int j = i - k; j < i + k; j++) {
+			sum += a[j];
+		}
+		a[i] = sum / n;
+	}
+
+	// 下边缘补偿
+	for (int i = size - k; i < size; i++) {
+		int sum = 0;
+		int t = 0;
+		for (int j = i - k; j < size; j++) {
+			sum += a[j];
+		}
+		for (int j = size; j < i + k; j++) {
+			sum += a[i];
+		}
+		a[i] = sum / n;
 	}
 }
