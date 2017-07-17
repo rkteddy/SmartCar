@@ -1,12 +1,11 @@
 #include "dataprocess.h"
+#include "Vision.h"
 
 #include <stdio.h>
 #include <tchar.h>
 #include <opencv2\opencv.hpp>
 #include <math.h>
 #include <time.h>   
-#include <windows.h> 
-#include "stdafx.h"
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -33,6 +32,16 @@ void showVideo();
 
 int main() {
 
+	Mat img = imread("road.jpg");
+	if (img.empty()) {
+		cout << "No files named \"road.jpg\"" << endl;
+	}
+	else {
+		Vision test = Vision(img);
+		test.bgrBinarization(70, 180, 220, 100);
+		test.getRawMidline();
+		test.showVision();
+	}
 	//showVideo();
 	
     return 0;
