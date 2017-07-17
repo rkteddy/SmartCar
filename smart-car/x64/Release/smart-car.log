@@ -1,8 +1,8 @@
 ﻿  smart-car.cpp
   正在生成代码
-  2 of 212 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  10 of 236 functions ( 4.2%) were compiled, the rest were copied from previous compilation.
+    4 functions were new in current compilation
+    8 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
   smart-car.vcxproj -> C:\Users\zrk83\Documents\Visual Studio 2015\Projects\smart-car\x64\Release\smart-car.exe
   smart-car.vcxproj -> C:\Users\zrk83\Documents\Visual Studio 2015\Projects\smart-car\x64\Release\smart-car.pdb (Full PDB)

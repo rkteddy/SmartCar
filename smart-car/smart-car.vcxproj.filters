@@ -18,18 +18,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="dataprocess.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="Vision.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="smart-car.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="smart-car.cpp">
+    <ClCompile Include="dataprocess.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Vision.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
