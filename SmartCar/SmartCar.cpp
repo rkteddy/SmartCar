@@ -29,7 +29,12 @@ int nowRoad;			//当前所在跑道颜色：
 						//  2：黑色
 
 void showVideo();
-
+void InitMat(Mat& m, double* num)
+{
+	for (int i = 0; i<m.rows; i++)
+		for (int j = 0; j<m.cols; j++)
+			m.at<double>(i, j) = *(num + i*m.rows + j);
+}
 int main() {
 
 	Mat img = imread("road.jpg");
@@ -38,10 +43,12 @@ int main() {
 	}
 	else {
 		Vision test = Vision(img);
-		test.bgrBinarization(70, 180, 220, 100);
+		test.bgrBinarization(70, 180, 220, 50);
 		test.getRawMidline();
+		test.fitLine();
 		test.showVision();
 	}
+
 	//showVideo();
 	
     return 0;
