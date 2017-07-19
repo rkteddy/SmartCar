@@ -124,24 +124,20 @@ void meanFilter(int *a, int size, int n)
 
 // 最小二乘法拟合曲线
 Mat LSE(vector<Point> srcA, vector<Point> srcB) {
-	
+
 	int n = srcA.size();
-	Mat A(n, 4, CV_8UC1, Scalar(0));
-	Mat B(n, 1, CV_8UC1, Scalar(0));
+	Mat A(n, 2, CV_64FC1, Scalar(0));
+	Mat B(n, 1, CV_64FC1, Scalar(0));
+
 
 	for (int row = 0; row < n; row++) {
-		uchar *APtr = A.ptr<uchar>(row);
-		for (int col = 0; col < 4; col++) {
-			APtr[col] = pow(srcA[row].x, col);
+		double *APtr = A.ptr<double>(row);
+		for (int col = 0; col < 2; col++) {
+			APtr[col] = pow(srcA[row].x, (double)col);
 		}
 	}
-
-	for (int row = 0; row < n; row++) {
-		B.at<uchar>(row, 0) = srcB[row].x;
-	}
 	
-	Mat X(4, 1, CV_8UC1, Scalar(0));
-	solve(A, B, X, DECOMP_LU);
+	Mat X = (A.t() * A).inv() * A.t() * B;
 
 	return X;
 }
